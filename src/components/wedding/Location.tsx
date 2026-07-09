@@ -28,8 +28,34 @@ export function Location() {
             Getting There
           </p>
           <h2 className="font-display divider-gold mt-4 text-4xl sm:text-5xl">
-            Venue Map
+            Venue 
           </h2>
+          <img
+            src="/location.png"
+            alt="Venue location illustration"
+            className="mx-auto mt-8 w-full max-w-lg"
+          />
+        </motion.div>
+
+        {/* Address */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="-mt-12 flex flex-col items-center gap-5 text-center"
+        >
+          <div className="flex flex-col items-center gap-1">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <MapPin size={15} strokeWidth={1.5} style={{ color: "#C5A880" }} />
+              <span className="font-sans text-base font-semibold text-foreground">
+                {VENUE_NAME}
+              </span>
+            </div>
+            <p className="font-sans text-sm text-muted-foreground">
+              {VENUE_ADDRESS}
+            </p>
+          </div>
         </motion.div>
 
         {/* Map embed */}
@@ -57,7 +83,7 @@ export function Location() {
           </div>
         </motion.div>
 
-        {/* Address + CTA */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,18 +91,6 @@ export function Location() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="mt-8 flex flex-col items-center gap-5 text-center"
         >
-          <div className="flex flex-col items-center gap-1">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin size={15} strokeWidth={1.5} style={{ color: "#C5A880" }} />
-              <span className="font-sans text-base font-semibold text-foreground">
-                {VENUE_NAME}
-              </span>
-            </div>
-            <p className="font-sans text-sm text-muted-foreground">
-              {VENUE_ADDRESS}
-            </p>
-          </div>
-
           <a
             href={MAPS_LINK_URL}
             target="_blank"

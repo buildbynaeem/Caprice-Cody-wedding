@@ -5,7 +5,6 @@ import { COUPLE } from "@/lib/wedding";
 
 const links = [
   { href: "#story", label: "Our Story" },
-  { href: "#details", label: "The Details" },
   { href: "#gallery", label: "Gallery" },
   { href: "#rsvp", label: "RSVP" },
 ];

@@ -1,11 +1,12 @@
-import { useState } from "react";
+"use client";
+
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { EffectCards, Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/effect-cards";
+import "swiper/css/pagination";
+import "swiper/css";
+
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
@@ -14,33 +15,38 @@ import g5 from "@/assets/gallery-5.jpg";
 import g6 from "@/assets/gallery-6.jpg";
 
 const photos = [
-  { src: g1, alt: "Gold wedding rings on silk with rose petals",       w: 900,  h: 1200 },
-  { src: g2, alt: "Couple dancing under string lights at dusk",        w: 1200, h: 900  },
-  { src: g3, alt: "Bridal bouquet of peonies and blush roses",         w: 900,  h: 1100 },
-  { src: g4, alt: "Couple walking through a golden field at sunset",   w: 1200, h: 900  },
-  { src: g5, alt: "Outdoor ceremony arch with white and blush flowers", w: 900, h: 1200 },
-  { src: g6, alt: "Hands intertwined with an engagement ring",         w: 1200, h: 800  },
+  { src: g1, alt: "Gold wedding rings on silk with rose petals" },
+  { src: g2, alt: "Couple dancing under string lights at dusk" },
+  { src: g3, alt: "Bridal bouquet of peonies and blush roses" },
+  { src: g4, alt: "Couple walking through a golden field at sunset" },
+  { src: g5, alt: "Outdoor ceremony arch with white and blush flowers" },
+  { src: g6, alt: "Hands intertwined with an engagement ring" },
 ];
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.11,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 32 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] } },
-};
+const carouselCss = `
+  .Gallery_Carousel {
+    padding-bottom: 56px !important;
+  }
+  .Gallery_Carousel .swiper-pagination-bullet {
+    background: #c9a96e;
+    opacity: 0.45;
+    width: 6px;
+    height: 6px;
+    transition: all 0.3s ease;
+  }
+  .Gallery_Carousel .swiper-pagination-bullet-active {
+    background: #c9a96e;
+    opacity: 1;
+    width: 20px;
+    border-radius: 4px;
+  }
+`;
 
 export function Gallery() {
-  const [lightbox, setLightbox] = useState<(typeof photos)[number] | null>(null);
-
   return (
-    <section id="gallery" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24 sm:py-32">
+    <section id="gallery" className="scroll-mt-24 bg-cream py-24 sm:py-32">
+      <style>{carouselCss}</style>
+
       {/* Section header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -55,64 +61,48 @@ export function Gallery() {
         <h2 className="font-display divider-gold mt-4 text-4xl sm:text-5xl">Gallery</h2>
       </motion.div>
 
-      {/* Masonry grid */}
+      {/* Card stack carousel */}
       <motion.div
-        className="group mt-16 columns-2 gap-4 md:columns-3"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, delay: 0.3 }}
+        className="mt-16 flex justify-center"
       >
-        {photos.map((photo) => (
-          <motion.figure
-            key={photo.alt}
-            variants={itemVariants}
-            className="mb-4 cursor-zoom-in overflow-hidden rounded-md shadow-card"
-            onClick={() => setLightbox(photo)}
-          >
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              width={photo.w}
-              height={photo.h}
-              loading="lazy"
-              className={[
-                "w-full transform-gpu object-cover transition-all duration-500 ease-out",
-                "scale-100 opacity-100",
-                "hover:scale-[1.02]",
-                "group-hover:opacity-80 hover:!opacity-100",
-              ].join(" ")}
-            />
-          </motion.figure>
-        ))}
+        <Swiper
+          effect="cards"
+          grabCursor={true}
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          pagination={{ clickable: true }}
+          modules={[EffectCards, Autoplay, Pagination]}
+          className="Gallery_Carousel h-[420px] w-[290px] sm:h-[480px] sm:w-[340px]"
+        >
+          {photos.map((photo, index) => (
+            <SwiperSlide key={index} className="rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                className="h-full w-full object-cover"
+                src={photo.src}
+                alt={photo.alt}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </motion.div>
 
-      {/* Lightbox */}
-      <Dialog
-        open={!!lightbox}
-        onOpenChange={(open) => { if (!open) setLightbox(null); }}
+      {/* Swipe hint */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        className="mt-4 text-center text-xs tracking-widest text-muted-foreground uppercase"
       >
-        <DialogContent
-          className="flex max-h-[90vh] max-w-5xl items-center justify-center border-0 bg-black/95 p-2 shadow-2xl sm:rounded-lg"
-        >
-          {/* Visually-hidden title for accessibility */}
-          <DialogTitle className="sr-only">
-            {lightbox?.alt ?? "Gallery photo"}
-          </DialogTitle>
-
-          {lightbox && (
-            <motion.img
-              key={lightbox.alt}
-              src={lightbox.src}
-              alt={lightbox.alt}
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="max-h-[85vh] w-auto max-w-full rounded object-contain"
-            />
-          )}
-        </DialogContent>
-      </Dialog>
+        Swipe to explore
+      </motion.p>
     </section>
   );
 }

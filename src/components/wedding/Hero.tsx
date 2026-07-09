@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useMemo } from "react";
-import hero from "@/assets/hero.jpg";
 import { COUPLE, WEDDING_DATE_LABEL } from "@/lib/wedding";
 
 function Petals() {
@@ -68,14 +67,14 @@ export function Hero() {
         J
       </div>
 
-      <img
-        src={hero}
-        alt={`${COUPLE.partner1} and ${COUPLE.partner2} in a garden at golden hour`}
-        width={1920}
-        height={1280}
+      <video
+        src="/hero.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-hero-overlay" />
       <Petals />
 
       <div className="relative z-10 px-6 pb-24 pt-32 text-center text-primary-foreground">
@@ -83,7 +82,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="text-xs font-medium uppercase tracking-[0.5em] sm:text-sm"
+          className="text-xs font-medium uppercase tracking-[0.5em] sm:text-sm "
         >
           Together with their families
         </motion.p>
