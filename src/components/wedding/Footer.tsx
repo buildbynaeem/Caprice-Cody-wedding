@@ -1,8 +1,19 @@
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background py-10 text-center">
-      <div className="mx-auto max-w-3xl px-6">
-      </div>
-    </footer>
+    <section className="py-20 pb-32 flex flex-col items-center text-center">
+      <div className="h-[1px] w-24 mx-auto bg-gradient-to-r from-transparent via-[#6B2D31] to-transparent" />
+      
+      <p className="mt-12 text-xs text-[#6B2D31]/70 font-sans uppercase tracking-[0.3em]">
+        FORMAL INVITATION TO FOLLOW
+      </p>
+
+      <p className="mt-6 font-serif text-5xl md:text-6xl" style={{ color: "#6B2D31" }}>
+        M &amp; H
+      </p>
+
+      <p className="mt-16 text-[10px] uppercase tracking-widest text-[#6B2D31]/30 hover:text-[#6B2D31]/60 transition-colors">
+        Digital Experience by Zylo
+      </p>
+    </section>
   );
 }
