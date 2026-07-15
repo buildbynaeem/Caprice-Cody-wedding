@@ -10,7 +10,7 @@ const MAPS_LINK_URL =
 
 export function VenueLocation() {
   return (
-    <section className="relative pt-10 pb-24 flex flex-col items-center text-center">
+    <section className="relative pt-10 pb-12 flex flex-col items-center text-center">
       <div className="mx-auto max-w-5xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
