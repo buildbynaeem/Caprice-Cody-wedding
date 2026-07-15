@@ -54,16 +54,18 @@ function Ripple() {
 }
 
 export function AudioPlayer() {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const isMounted = useIsMounted();
 
-  // Initialize audio safely on mount
   useEffect(() => {
-    audioRef.current = new Audio(TRACK_URL);
-    audioRef.current.loop = true;
+    // 1. Initialize the audio only once on the client
+    if (typeof window !== "undefined" && !audioRef.current) {
+      audioRef.current = new Audio(TRACK_URL);
+      audioRef.current.loop = true;
+    }
 
-    // Cleanup on unmount
+    // 2. The crucial cleanup function to kill "ghost" tracks in React Strict Mode
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -73,14 +75,19 @@ export function AudioPlayer() {
   }, []);
 
   const toggleAudio = () => {
+    if (!audioRef.current) return;
+
     if (isPlaying) {
-      audioRef.current?.pause();
+      audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current?.play().catch(() => {
-        console.warn("Audio playback blocked by browser policy.");
+      // 3. Catch browser autoplay promise rejections safely
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((error) => {
+        console.error("Browser blocked audio play:", error);
+        setIsPlaying(false); // Reset UI if blocked
       });
-      setIsPlaying(true);
     }
   };
 
@@ -108,13 +115,13 @@ export function AudioPlayer() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 2, ease: "easeOut" }}
         aria-label={isPlaying ? "Pause background music" : "Play background music"}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white outline-none focus:outline-none focus:ring-0 select-none"
         style={{
           boxShadow: "0 8px 30px rgb(0,0,0,0.08)",
-          outline: "none",
           border: "none",
           cursor: "pointer",
           position: "fixed",   // explicit to avoid Framer overriding
+          WebkitTapHighlightColor: "transparent"
         }}
       >
         {/* Ripple ring while playing */}
