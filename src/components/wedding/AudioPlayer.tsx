@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMounted } from "@/hooks/use-is-mounted";
 
@@ -54,28 +54,33 @@ function Ripple() {
 }
 
 export function AudioPlayer() {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const isMounted = useIsMounted();
 
-  const toggle = async () => {
-    const audio = audioRef.current;
-    if (!audio) return;
+  // Initialize audio safely on mount
+  useEffect(() => {
+    audioRef.current = new Audio(TRACK_URL);
+    audioRef.current.loop = true;
 
+    // Cleanup on unmount
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const toggleAudio = () => {
     if (isPlaying) {
-      try {
-        audio.pause();
-        setIsPlaying(false);
-      } catch {
-        console.warn("Audio pause failed.");
-      }
+      audioRef.current?.pause();
+      setIsPlaying(false);
     } else {
-      try {
-        await audio.play();
-        setIsPlaying(true);
-      } catch {
+      audioRef.current?.play().catch(() => {
         console.warn("Audio playback blocked by browser policy.");
-      }
+      });
+      setIsPlaying(true);
     }
   };
 
@@ -93,12 +98,10 @@ export function AudioPlayer() {
         }
       `}</style>
 
-      <audio ref={audioRef} src={TRACK_URL} loop preload="none" />
-
       <motion.button
         id="floating-music-btn"
-        onClick={toggle}
-        onTouchStart={toggle}
+        onClick={toggleAudio}
+        onTouchStart={toggleAudio}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.92 }}
         initial={{ opacity: 0, y: 20 }}
