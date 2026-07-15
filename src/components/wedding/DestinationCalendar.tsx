@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, ChevronDown } from "lucide-react";
+import { Calendar, ChevronDown, Globe, Download, Mail } from "lucide-react";
 
 const WEDDING_DATE = new Date("2026-08-08T00:00:00");
 
@@ -134,25 +134,28 @@ export function DestinationCalendar() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-lg shadow-lg overflow-hidden z-50"
+                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white/80 backdrop-blur-md border border-[#6B2D31]/20 rounded-2xl shadow-xl overflow-hidden z-50"
               >
-                <div className="py-1">
+                <div className="py-1 p-1">
                   <button
                     onClick={() => handleOptionClick("google")}
-                    className="w-full px-6 py-3 text-left text-[#6B2D31] font-sans hover:bg-[#6B2D31]/10 transition-colors"
+                    className="w-full px-4 py-3 text-left text-[#6B2D31] font-sans rounded-xl flex items-center transition-all duration-300 hover:bg-[#6B2D31]/10 hover:pl-5"
                   >
+                    <Globe className="w-4 h-4 mr-3" />
                     Google Calendar
                   </button>
                   <button
                     onClick={() => handleOptionClick("apple")}
-                    className="w-full px-6 py-3 text-left text-[#6B2D31] font-sans hover:bg-[#6B2D31]/10 transition-colors"
+                    className="w-full px-4 py-3 text-left text-[#6B2D31] font-sans rounded-xl flex items-center transition-all duration-300 hover:bg-[#6B2D31]/10 hover:pl-5"
                   >
+                    <Download className="w-4 h-4 mr-3" />
                     Apple (ICS)
                   </button>
                   <button
                     onClick={() => handleOptionClick("outlook")}
-                    className="w-full px-6 py-3 text-left text-[#6B2D31] font-sans hover:bg-[#6B2D31]/10 transition-colors"
+                    className="w-full px-4 py-3 text-left text-[#6B2D31] font-sans rounded-xl flex items-center transition-all duration-300 hover:bg-[#6B2D31]/10 hover:pl-5"
                   >
+                    <Mail className="w-4 h-4 mr-3" />
                     Outlook
                   </button>
                 </div>
