@@ -1,14 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/wedding/Hero";
 
-import { QuoteDivider } from "@/components/wedding/QuoteDivider";
 import { Countdown } from "@/components/wedding/Countdown";
 import { DestinationCalendar } from "@/components/wedding/DestinationCalendar";
-import { Location } from "@/components/wedding/Location";
-import { Schedule } from "@/components/wedding/Schedule";
+import { VenueLocation } from "@/components/wedding/VenueLocation";
 
 
-import { Footer } from "@/components/wedding/Footer";
 import { AudioPlayer } from "@/components/wedding/AudioPlayer";
 
 export const Route = createFileRoute("/home")({
@@ -19,15 +16,12 @@ function Home() {
   return (
     <main className="w-full max-w-[100vw] overflow-x-hidden">
       <Hero />
-      <Countdown />
-      <DestinationCalendar />
+      <div id="save-the-date" className="w-full min-h-screen bg-noise" style={{ backgroundColor: "#E3E8E3" }}>
+        <Countdown />
+        <DestinationCalendar />
+        <VenueLocation />
+      </div>
 
-      <QuoteDivider />
-      <Location />
-      <Schedule />
-
-
-      <Footer />
       <AudioPlayer />
     </main>
   );

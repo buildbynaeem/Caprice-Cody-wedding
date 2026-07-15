@@ -72,38 +72,34 @@ export function DestinationCalendar() {
   };
 
   return (
-    <section
-      className="relative py-24 px-6 flex flex-col items-center text-center bg-noise"
-      style={{ backgroundColor: "#E3E8E3" }}
-    >
+    <section className="relative pt-8 pb-24 px-6 flex flex-col items-center text-center">
       <div className="mx-auto max-w-4xl">
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.9, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-[0.62rem] font-sans font-semibold uppercase tracking-[0.3em] opacity-80 mb-6"
           style={{ color: "#6B2D31" }}
         >
-          THE DESTINATION
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="font-serif text-5xl md:text-7xl"
+          transition={{ duration: 0.9, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="font-script text-[12vw] md:text-8xl font-normal whitespace-nowrap"
           style={{ color: "#6B2D31" }}
         >
-          Join us in Jardin Des Lys, Faitroun
+       Save The Date
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.8, delay: 0.25 }}
+          transition={{ duration: 0.9, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="font-serif italic text-xl mt-4 mb-12"
           style={{ color: "#6B2D31" }}
         >
@@ -111,11 +107,11 @@ export function DestinationCalendar() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="relative"
+          transition={{ duration: 0.9, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          className="relative flex items-center justify-center"
         >
           <button
             onClick={() => setIsOpen(!isOpen)}

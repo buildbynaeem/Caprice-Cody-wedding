@@ -117,12 +117,12 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="mt-10"
         >
-          <a
-            href="#rsvp"
+          <button
+            onClick={() => document.getElementById('save-the-date')?.scrollIntoView({ behavior: 'smooth' })}
             className="inline-block border border-white/40 bg-white/20 px-10 py-4 text-xs font-semibold uppercase tracking-[0.35em] text-white shadow-soft backdrop-blur-xl transition-all duration-300 hover:bg-white/90 hover:text-foreground"
           >
-            RSVP Now
-          </a>
+            SAVE THE DATE
+          </button>
         </motion.div>
       </div>
 

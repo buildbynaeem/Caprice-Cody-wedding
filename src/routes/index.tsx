@@ -51,7 +51,7 @@ function Splash() {
         preload="auto"
       />
       {!hasStarted && (
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-x-0 bottom-8 flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0.5 }}
             animate={{ opacity: [0.5, 1, 0.5] }}

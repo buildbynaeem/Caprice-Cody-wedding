@@ -42,6 +42,16 @@
   --color-charcoal: var(--charcoal);
   --font-serif: "Playfair Display", "Georgia", serif;
   --font-sans: "Jost", "Helvetica Neue", sans-serif;
+  --font-script: "Alex Brush", cursive;
+  --font-script-alt: "Great Vibes", cursive;
+}
+
+@utility font-script {
+  font-family: var(--font-script);
+}
+
+@utility font-script-alt {
+  font-family: var(--font-script-alt);
 }
 
 :root {
