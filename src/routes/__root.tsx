@@ -77,21 +77,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Caprice & Cody — February 29, 2028" },
+      { title: "Caprice & Cody | You're Invited" },
+      {
+        name: "title",
+        content: "Caprice & Cody | You're Invited",
+      },
       {
         name: "description",
         content:
-          "You're invited to celebrate with us. Join Caprice & Cody as they begin their forever together on February 29, 2028.",
+          "Join us in celebrating the wedding of Caprice Monique and Cody McLeod on February 29, 2028. Click to view details and RSVP.",
       },
       { name: "author", content: "Caprice & Cody" },
-      { property: "og:title", content: "Caprice & Cody — February 29, 2028" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://caprice-and-cody.com" },
+      { property: "og:title", content: "Caprice & Cody | You're Invited 🥀" },
       {
         property: "og:description",
         content:
-          "You're invited to celebrate with us. Join Caprice & Cody as they begin their forever together on February 29, 2028.",
+          "Join us in celebrating the wedding of Caprice Monique and Cody McLeod. Click to view the details and RSVP.",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://caprice-and-cody.com/envelope-poster.webp" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "twitter:url", content: "https://caprice-and-cody.com" },
+      { property: "twitter:title", content: "Caprice & Cody | You're Invited 🥀" },
+      {
+        property: "twitter:description",
+        content:
+          "Join us in celebrating the wedding of Caprice Monique and Cody McLeod on February 29, 2028.",
+      },
+      { property: "twitter:image", content: "https://caprice-and-cody.com/envelope-poster.webp" },
     ],
     links: [
       {
