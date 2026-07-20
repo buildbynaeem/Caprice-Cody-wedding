@@ -54,17 +54,17 @@ export function Hero() {
       <div
         className="absolute top-5 left-6 z-20 flex items-center gap-1.5 select-none pointer-events-none"
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "'Cinzel', serif",
           fontSize: "1.5rem",
-          letterSpacing: "0.08em",
+          letterSpacing: "0.12em",
           color: "var(--primary-foreground)",
           textShadow: "0 1px 8px rgba(0,0,0,0.3)",
         }}
-        aria-label="M and H logo"
+        aria-label="C and C logo"
       >
-        M
+        C
         <span style={{ color: "var(--gold-soft)", fontStyle: "italic" }}>&amp;</span>
-        H
+        C
       </div>
 
       <video
@@ -82,19 +82,21 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="text-xs font-medium uppercase tracking-[0.5em] sm:text-sm "
+          className="text-xs font-medium uppercase sm:text-sm"
+          style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.5em" }}
         >
-          Together with their families
+          Together with their Families
         </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6 }}
-          className="font-display mt-6 flex flex-col items-center leading-tight text-5xl sm:text-7xl md:text-8xl"
+          className="mt-6 flex flex-col items-center leading-tight text-5xl sm:text-7xl md:text-8xl"
+          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}
         >
           <span>{COUPLE.partner1}</span>
-          <span className="italic text-gold-soft text-4xl sm:text-5xl md:text-6xl my-1">&amp;</span>
+          <span className="italic text-gold-soft text-4xl sm:text-5xl md:text-6xl my-1" style={{ fontFamily: "'Cormorant Garamond', serif" }}>&amp;</span>
           <span>{COUPLE.partner2}</span>
         </motion.h1>
 
@@ -118,10 +120,10 @@ export function Hero() {
           className="mt-10"
         >
           <button
-            onClick={() => document.getElementById('save-the-date')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('rsvp')?.scrollIntoView({ behavior: 'smooth' })}
             className="inline-block border border-white/40 bg-white/20 px-10 py-4 text-xs font-semibold uppercase tracking-[0.35em] text-white shadow-soft backdrop-blur-xl transition-all duration-300 hover:bg-white/90 hover:text-foreground"
           >
-            SAVE THE DATE
+            RSVP NOW
           </button>
         </motion.div>
       </div>

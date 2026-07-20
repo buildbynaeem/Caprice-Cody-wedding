@@ -77,18 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Marlene & Hytham — August 8, 2026" },
+      { title: "Caprice & Cody — February 29, 2028" },
       {
         name: "description",
         content:
-          "You're invited to celebrate with us. Discover the details and save the date for our wedding at Jardin Des Lys, Lebanon.",
+          "You're invited to celebrate with us. Join Caprice & Cody as they begin their forever together on February 29, 2028.",
       },
-      { name: "author", content: "Marlene & Hytham" },
-      { property: "og:title", content: "Marlene & Hytham — August 8, 2026" },
+      { name: "author", content: "Caprice & Cody" },
+      { property: "og:title", content: "Caprice & Cody — February 29, 2028" },
       {
         property: "og:description",
         content:
-          "You're invited to celebrate with us. Discover the details and save the date for our wedding at Jardin Des Lys, Lebanon.",
+          "You're invited to celebrate with us. Join Caprice & Cody as they begin their forever together on February 29, 2028.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap",
       },
     ],
   }),

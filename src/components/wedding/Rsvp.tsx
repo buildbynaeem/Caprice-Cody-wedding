@@ -2,42 +2,178 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart } from "lucide-react";
 
-const inputClass =
-  "w-full border border-neutral-200 bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880]/40";
+const CRIMSON = "#7A0016";
 
-const labelClass =
-  "mb-2 block text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A880]";
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+  }),
+};
+
+// Bottom-border-only input styling with crimson focus
+const inputBaseStyle: React.CSSProperties = {
+  width: "100%",
+  background: "transparent",
+  border: "none",
+  borderBottom: "1px solid #CCCCCC",
+  outline: "none",
+  padding: "10px 0",
+  fontFamily: "'Montserrat', sans-serif",
+  fontWeight: 300,
+  fontSize: "0.9rem",
+  color: "#222222",
+  transition: "border-color 0.25s",
+};
+
+function Field({
+  id,
+  label,
+  optional,
+  children,
+}: {
+  id?: string;
+  label: string;
+  optional?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <label
+        htmlFor={id}
+        style={{
+          fontFamily: "'Cinzel', serif",
+          fontSize: "0.65rem",
+          letterSpacing: "0.35em",
+          color: CRIMSON,
+          textTransform: "uppercase",
+        }}
+      >
+        {label}
+        {optional && (
+          <span
+            style={{
+              marginLeft: "0.5rem",
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 300,
+              fontSize: "0.65rem",
+              color: "#999999",
+              textTransform: "none",
+              letterSpacing: "0",
+            }}
+          >
+            (Optional)
+          </span>
+        )}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+function FocusInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  const [focused, setFocused] = useState(false);
+  return (
+    <input
+      {...props}
+      style={{
+        ...inputBaseStyle,
+        borderBottomColor: focused ? CRIMSON : "#CCCCCC",
+      }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      placeholder={props.placeholder}
+    />
+  );
+}
+
+function FocusTextarea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  const [focused, setFocused] = useState(false);
+  return (
+    <textarea
+      {...props}
+      rows={3}
+      style={{
+        ...inputBaseStyle,
+        resize: "none",
+        borderBottomColor: focused ? CRIMSON : "#CCCCCC",
+      }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+    />
+  );
+}
 
 export function Rsvp() {
   const [attending, setAttending] = useState<"yes" | "no">("yes");
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="rsvp" className="scroll-mt-24 bg-secondary/60 py-24 sm:py-32">
+    <section
+      id="rsvp"
+      className="scroll-mt-24 py-24 sm:py-32"
+      style={{ backgroundColor: "#FAFAFA" }}
+    >
       <div className="mx-auto max-w-2xl px-6">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          variants={fadeUp}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold">
-            Kindly respond by August 1, 2026
+          <p
+            className="text-xs uppercase tracking-[0.45em]"
+            style={{ fontFamily: "'Cinzel', serif", color: CRIMSON }}
+          >
+            Kindly Reply Below
           </p>
-          <h2 className="font-display divider-gold mt-4 text-4xl sm:text-5xl">RSVP</h2>
-          <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-            We would be honored to have you with us. Please let us know if you can join
-            our celebration.
+          <h2
+            className="mt-4 text-5xl sm:text-7xl"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 300,
+              color: "#222222",
+              fontStyle: "italic",
+            }}
+          >
+            RSVP
+          </h2>
+          <div
+            className="mx-auto mt-5 h-px w-20"
+            style={{
+              background: `linear-gradient(to right, transparent, rgba(122,0,22,0.4), transparent)`,
+            }}
+          />
+          <p
+            className="mx-auto mt-6 max-w-sm text-sm leading-relaxed"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 300,
+              color: "#555555",
+            }}
+          >
+            We would be so honored to celebrate with you. Please let us know if you can join us.
           </p>
         </motion.div>
 
+        {/* Form card */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="mt-12 border border-border bg-card p-8 shadow-soft sm:p-12"
+          custom={0.2}
+          variants={fadeUp}
+          className="mt-14"
+          style={{
+            backgroundColor: "#FFFFFF",
+            borderRadius: "8px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+            padding: "3rem 2.5rem",
+          }}
         >
           <AnimatePresence mode="wait">
             {submitted ? (
@@ -48,11 +184,31 @@ export function Rsvp() {
                 transition={{ duration: 0.5 }}
                 className="py-10 text-center"
               >
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-blush text-blush-deep">
-                  <Heart size={28} fill="currentColor" />
+                <div
+                  className="mx-auto flex h-16 w-16 items-center justify-center rounded-full"
+                  style={{ backgroundColor: "#FFF0F2" }}
+                >
+                  <Heart size={26} fill={CRIMSON} color={CRIMSON} />
                 </div>
-                <h3 className="font-display mt-6 text-3xl">Thank you</h3>
-                <p className="mt-3 text-sm text-muted-foreground">
+                <h3
+                  className="mt-6 text-3xl"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 300,
+                    fontStyle: "italic",
+                    color: "#222222",
+                  }}
+                >
+                  Thank you
+                </h3>
+                <p
+                  className="mt-3 text-sm leading-relaxed"
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 300,
+                    color: "#555555",
+                  }}
+                >
                   Your response has been received. We can't wait to celebrate with you.
                 </p>
               </motion.div>
@@ -64,93 +220,131 @@ export function Rsvp() {
                   e.preventDefault();
                   setSubmitted(true);
                 }}
-                className="space-y-7"
+                className="flex flex-col gap-8"
               >
-                {/* Full Name */}
-                <div>
-                  <label htmlFor="rsvp-name" className={labelClass}>
-                    Full Name
-                  </label>
-                  <input
-                    id="rsvp-name"
+                {/* Name */}
+                <Field id="rsvp-name" label="Full Name">
+                  <FocusInput id="rsvp-name" required placeholder="Your name" />
+                </Field>
+
+                {/* Email */}
+                <Field id="rsvp-email" label="Email Address">
+                  <FocusInput
+                    id="rsvp-email"
+                    type="email"
                     required
-                    placeholder="Your name"
-                    className={inputClass}
+                    placeholder="your@email.com"
                   />
-                </div>
+                </Field>
 
                 {/* Attendance toggle */}
-                <div>
-                  <span className={labelClass}>Will you attend?</span>
+                <div className="flex flex-col gap-3">
+                  <span
+                    style={{
+                      fontFamily: "'Cinzel', serif",
+                      fontSize: "0.65rem",
+                      letterSpacing: "0.35em",
+                      color: CRIMSON,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Attendance
+                  </span>
                   <div className="flex gap-3">
-                    {(["yes", "no"] as const).map((v) => (
-                      <button
-                        key={v}
-                        type="button"
-                        onClick={() => setAttending(v)}
-                        className={`flex-1 border px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 ${
-                          attending === v
-                            ? "border-primary bg-primary text-primary-foreground"
-                            : "border-neutral-200 bg-transparent text-muted-foreground hover:border-[#C5A880] hover:text-[#C5A880]"
-                        }`}
-                      >
-                        {v === "yes" ? "Joyfully Accept" : "Regretfully Decline"}
-                      </button>
-                    ))}
+                    {(["yes", "no"] as const).map((v) => {
+                      const active = attending === v;
+                      return (
+                        <button
+                          key={v}
+                          type="button"
+                          onClick={() => setAttending(v)}
+                          style={{
+                            flex: 1,
+                            padding: "0.75rem 1rem",
+                            fontSize: "0.65rem",
+                            letterSpacing: "0.25em",
+                            textTransform: "uppercase",
+                            fontFamily: "'Cinzel', serif",
+                            border: `1px solid ${active ? CRIMSON : "#DDDDDD"}`,
+                            backgroundColor: active ? CRIMSON : "transparent",
+                            color: active ? "#FFFFFF" : "#555555",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            transition: "all 0.25s",
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!active) {
+                              (e.currentTarget as HTMLButtonElement).style.borderColor =
+                                CRIMSON;
+                              (e.currentTarget as HTMLButtonElement).style.color = CRIMSON;
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!active) {
+                              (e.currentTarget as HTMLButtonElement).style.borderColor =
+                                "#DDDDDD";
+                              (e.currentTarget as HTMLButtonElement).style.color = "#555555";
+                            }
+                          }}
+                        >
+                          {v === "yes" ? "Joyfully Attending" : "Regretfully Declining"}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
-                {/* Number of Guests */}
-                <div>
-                  <label htmlFor="rsvp-guests" className={labelClass}>
-                    Number of Guests
-                  </label>
-                  <input
-                    id="rsvp-guests"
-                    type="number"
-                    min={1}
-                    max={5}
-                    defaultValue={1}
-                    className={inputClass}
-                  />
-                </div>
-
-                {/* Dietary Restrictions */}
-                <div>
-                  <label htmlFor="rsvp-dietary" className={labelClass}>
-                    Dietary Restrictions <span className="normal-case tracking-normal text-muted-foreground/60">(Optional)</span>
-                  </label>
-                  <input
+                {/* Dietary restrictions */}
+                <Field id="rsvp-dietary" label="Dietary Restrictions" optional>
+                  <FocusTextarea
                     id="rsvp-dietary"
                     placeholder="e.g. vegetarian, gluten-free, nut allergy…"
-                    className={inputClass}
                   />
-                </div>
+                </Field>
 
-                {/* Song Request */}
-                <div>
-                  <label htmlFor="rsvp-song" className={labelClass}>
-                    Song to Get You on the Dance Floor
-                  </label>
-                  <input
+                {/* Song request */}
+                <Field id="rsvp-song" label="Song Request">
+                  <FocusInput
                     id="rsvp-song"
                     placeholder="Artist – Song title"
-                    className={inputClass}
                   />
-                </div>
+                </Field>
 
                 {/* Submit */}
-                <button
-                  type="submit"
-                  className="w-full bg-primary px-8 py-4 text-xs font-semibold uppercase tracking-[0.35em] text-primary-foreground transition-all duration-300 hover:opacity-90 hover:shadow-soft"
-                >
-                  Send RSVP
-                </button>
+                <SubmitButton />
               </motion.form>
             )}
           </AnimatePresence>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function SubmitButton() {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <button
+      type="submit"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        width: "100%",
+        padding: "1.1rem 2rem",
+        fontFamily: "'Cinzel', serif",
+        fontSize: "0.65rem",
+        letterSpacing: "0.35em",
+        textTransform: "uppercase",
+        color: "#FFFFFF",
+        backgroundColor: hovered ? CRIMSON : "#222222",
+        border: "none",
+        borderRadius: "4px",
+        cursor: "pointer",
+        transition: "background-color 0.3s",
+        marginTop: "0.5rem",
+      }}
+    >
+      Send RSVP
+    </button>
   );
 }

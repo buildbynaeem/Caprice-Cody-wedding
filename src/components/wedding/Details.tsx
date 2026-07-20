@@ -1,72 +1,198 @@
 import { motion } from "framer-motion";
-import { Church, GlassWater, PartyPopper, Clock, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 
-const events = [
-  {
-    icon: Church,
-    title: "The Ceremony",
-    time: "3:30 PM",
-    place: "The Rose Garden, Rosewood Estate",
-    note: "Please arrive by 3:15 PM to be seated. Ceremony held outdoors among the roses.",
-  },
-  {
-    icon: GlassWater,
-    title: "The Reception",
-    time: "6:00 PM",
-    place: "The Grand Terrace, Rosewood Estate",
-    note: "Cocktails at sunset, followed by dinner under string lights and our first dance.",
-  },
-  {
-    icon: PartyPopper,
-    title: "The After-Party",
-    time: "10:00 PM",
-    place: "The Cellar Lounge",
-    note: "Dancing until late, midnight snacks, and a champagne toast to send us off.",
-  },
-];
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+  }),
+};
 
 export function Details() {
   return (
-    <section id="details" className="scroll-mt-24 bg-cream py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section
+      id="details"
+      className="scroll-mt-24 py-24 sm:py-32"
+      style={{ backgroundColor: "#FAFAFA" }}
+    >
+      <div className="mx-auto max-w-5xl px-6">
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          variants={fadeUp}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold">
-            Saturday · September 12, 2026
+          <p
+            className="text-xs uppercase tracking-[0.45em]"
+            style={{
+              fontFamily: "'Cinzel', serif",
+              color: "#7A0016",
+              letterSpacing: "0.45em",
+            }}
+          >
+            Mark Your Calendar
           </p>
-          <h2 className="font-display divider-gold mt-4 text-4xl sm:text-5xl">The Details</h2>
+          <h2
+            className="mt-4 text-5xl sm:text-6xl"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 300,
+              color: "#222222",
+              fontStyle: "italic",
+            }}
+          >
+            The Details
+          </h2>
+          {/* Crimson divider */}
+          <div
+            className="mx-auto mt-5 h-px w-20"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(122,0,22,0.4), transparent)",
+            }}
+          />
         </motion.div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
-          {events.map((e, i) => (
-            <motion.article
-              key={e.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: i * 0.15, ease: "easeOut" }}
-              className="group flex flex-col items-center border border-border bg-card px-8 py-12 text-center shadow-card transition-shadow duration-500 hover:shadow-soft"
+        {/* Cards grid */}
+        <div className="mt-16 grid gap-8 md:grid-cols-2">
+          {/* WHEN card */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            custom={0.1}
+            variants={fadeUp}
+            className="flex flex-col items-center px-10 py-14 text-center"
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderRadius: "8px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+            }}
+          >
+            {/* Icon circle */}
+            <div
+              className="flex h-14 w-14 items-center justify-center rounded-full"
+              style={{ border: "1px solid #7A0016" }}
             >
-              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-gold-soft bg-background text-gold transition-transform duration-500 group-hover:scale-110">
-                <e.icon size={26} strokeWidth={1.5} />
-              </div>
-              <h3 className="font-display mt-6 text-2xl">{e.title}</h3>
-              <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
-                <Clock size={14} className="shrink-0 text-gold" />
-                <span className="tracking-widest">{e.time}</span>
-              </div>
-              <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                <MapPin size={14} className="shrink-0 text-gold" />
-                <span>{e.place}</span>
-              </div>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{e.note}</p>
-            </motion.article>
-          ))}
+              <Calendar size={22} style={{ color: "#7A0016" }} strokeWidth={1.5} />
+            </div>
+
+            <p
+              className="mt-7 text-xs uppercase tracking-[0.4em]"
+              style={{ fontFamily: "'Cinzel', serif", color: "#7A0016" }}
+            >
+              When
+            </p>
+
+            <h3
+              className="mt-4 text-3xl leading-snug"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                color: "#222222",
+              }}
+            >
+              Saturday, February 29, 2028
+            </h3>
+
+            <div
+              className="mx-auto mt-4 h-px w-12"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(122,0,22,0.4), transparent)",
+              }}
+            />
+
+            <p
+              className="mt-4 text-sm leading-relaxed"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 300,
+                color: "#555555",
+              }}
+            >
+              Time To Be Announced
+            </p>
+          </motion.div>
+
+          {/* WHERE card */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            custom={0.25}
+            variants={fadeUp}
+            className="flex flex-col items-center px-10 py-14 text-center"
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderRadius: "8px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+            }}
+          >
+            {/* Icon circle */}
+            <div
+              className="flex h-14 w-14 items-center justify-center rounded-full"
+              style={{ border: "1px solid #7A0016" }}
+            >
+              <MapPin size={22} style={{ color: "#7A0016" }} strokeWidth={1.5} />
+            </div>
+
+            <p
+              className="mt-7 text-xs uppercase tracking-[0.4em]"
+              style={{ fontFamily: "'Cinzel', serif", color: "#7A0016" }}
+            >
+              Where
+            </p>
+
+            <h3
+              className="mt-4 text-3xl leading-snug"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                color: "#222222",
+              }}
+            >
+              Santa Catalina Island
+            </h3>
+
+            <div
+              className="mx-auto mt-4 h-px w-12"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(122,0,22,0.4), transparent)",
+              }}
+            />
+
+            <p
+              className="mt-4 text-sm leading-relaxed"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 300,
+                color: "#555555",
+              }}
+            >
+              California, United States
+            </p>
+
+            <a
+              href="https://www.google.com/maps/place/Santa+Catalina+Island/@33.3888759,-118.6197532,11z/data=!3m1!4b1!4m6!3m5!1s0x80dd6f237be18b25:0x3e59a3d5c5f50eab!8m2!3d33.3878856!4d-118.4163103!16zL20vMDF3dmM3?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest transition-opacity duration-200 hover:opacity-70"
+              style={{
+                fontFamily: "'Cinzel', serif",
+                color: "#7A0016",
+                textDecoration: "none",
+              }}
+            >
+              <MapPin size={11} strokeWidth={1.8} />
+              Open in Google Maps
+            </a>
+          </motion.div>
         </div>
       </div>
     </section>
