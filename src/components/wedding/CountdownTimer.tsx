@@ -49,10 +49,10 @@ export function CountdownTimer() {
       >
         {/* Eyebrow */}
         <p
-          className="mb-12 text-center text-sm md:text-base tracking-widest uppercase"
-          style={{ fontFamily: "'Cinzel', serif", color: "#7A0016" }}
+          className="mb-10 text-center text-3xl md:text-4xl"
+          style={{ fontFamily: "'Great Vibes', cursive", color: "#7A0016" }}
         >
-          The Celebration Begins In
+          Counting Down to Forever
         </p>
 
         {/* Time blocks — always single row */}
@@ -96,7 +96,7 @@ export function CountdownTimer() {
           className="mx-auto mt-12 h-px w-24"
           style={{
             background:
-              "linear-gradient(to right, transparent, #D4AF37, transparent)",
+              "linear-gradient(to right, transparent, #7A0016, transparent)",
           }}
         />
       </motion.div>

@@ -63,7 +63,7 @@ export function Hero() {
         aria-label="C and C logo"
       >
         C
-        <span style={{ color: "var(--gold-soft)", fontStyle: "italic" }}>&amp;</span>
+        <span style={{ color: "#FFFFFF", fontStyle: "italic" }}>&amp;</span>
         C
       </div>
 
@@ -96,7 +96,7 @@ export function Hero() {
           style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}
         >
           <span>{COUPLE.partner1}</span>
-          <span className="italic text-gold-soft text-4xl sm:text-5xl md:text-6xl my-1" style={{ fontFamily: "'Cormorant Garamond', serif" }}>&amp;</span>
+          <span className="italic text-4xl sm:text-5xl md:text-6xl my-1" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#FFFFFF" }}>&amp;</span>
           <span>{COUPLE.partner2}</span>
         </motion.h1>
 
@@ -106,7 +106,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 1.1 }}
           className="mx-auto mt-8 flex max-w-md flex-col items-center gap-2"
         >
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-gold-soft to-transparent" />
+          <div className="h-px w-24" style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent)" }} />
           <p className="font-display mt-3 text-lg italic tracking-wide sm:text-2xl">
             {WEDDING_DATE_LABEL}
           </p>

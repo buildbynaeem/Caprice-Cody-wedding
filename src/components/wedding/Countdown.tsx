@@ -83,10 +83,10 @@ export function Countdown() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center font-serif italic text-3xl md:text-4xl mb-8"
-          style={{ color: "#6B2D31" }}
+          className="text-center text-3xl md:text-4xl mb-8"
+          style={{ fontFamily: "'Great Vibes', cursive", color: "#7A0016" }}
         >
-          The Celebration Begins In
+          Counting Down to Forever
         </motion.p>
 
         <div className="mt-10 grid grid-cols-4 items-start justify-items-center gap-2 sm:gap-8">

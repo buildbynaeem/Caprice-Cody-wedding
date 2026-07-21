@@ -5,18 +5,28 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import "swiper/css/pagination";
 
-import mood1 from "@/assets/mood-1.jpg";
-import mood2 from "@/assets/mood-2.jpg";
-import mood3 from "@/assets/mood-3.jpg";
-import mood4 from "@/assets/mood-4.jpg";
-import mood5 from "@/assets/mood-5.jpg";
+import g1 from "@/assets/gallery/1.webp";
+import g2 from "@/assets/gallery/2.webp";
+import g3 from "@/assets/gallery/3.webp";
+import g4 from "@/assets/gallery/4.webp";
+import g5 from "@/assets/gallery/5.webp";
+import g6 from "@/assets/gallery/6.webp";
+import g7 from "@/assets/gallery/7.webp";
+import g8 from "@/assets/gallery/8.webp";
+import g9 from "@/assets/gallery/9.webp";
+import g10 from "@/assets/gallery/10.webp";
 
 const photos = [
-  { src: mood1, alt: "White calla lilies on a sunlit marble table" },
-  { src: mood2, alt: "Deep red rose wedding centerpiece" },
-  { src: mood3, alt: "Sunlit California coastal estate garden" },
-  { src: mood4, alt: "Champagne toast under fairy lights" },
-  { src: mood5, alt: "Catalina Island ceremony at golden hour" },
+  { src: g1,  alt: "Wedding moment 1" },
+  { src: g2,  alt: "Wedding moment 2" },
+  { src: g3,  alt: "Wedding moment 3" },
+  { src: g4,  alt: "Wedding moment 4" },
+  { src: g5,  alt: "Wedding moment 5" },
+  { src: g6,  alt: "Wedding moment 6" },
+  { src: g7,  alt: "Wedding moment 7" },
+  { src: g8,  alt: "Wedding moment 8" },
+  { src: g9,  alt: "Wedding moment 9" },
+  { src: g10, alt: "Wedding moment 10" },
 ];
 
 const carouselCss = `
@@ -24,14 +34,14 @@ const carouselCss = `
     padding-bottom: 60px !important;
   }
   .Gallery_CardSwipe .swiper-pagination-bullet {
-    background: #D4AF37;
-    opacity: 0.35;
+    background: rgba(122, 0, 22, 0.25);
+    opacity: 1;
     width: 5px;
     height: 5px;
     transition: all 0.3s ease;
   }
   .Gallery_CardSwipe .swiper-pagination-bullet-active {
-    background: #D4AF37;
+    background: #7A0016;
     opacity: 1;
     width: 20px;
     border-radius: 3px;
@@ -71,7 +81,7 @@ export function Gallery() {
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 300,
-              color: "#222222",
+              color: "#1A1A1A",
               fontStyle: "italic",
             }}
           >
@@ -87,9 +97,10 @@ export function Gallery() {
           <p
             className="mx-auto mt-6 max-w-sm text-sm leading-relaxed"
             style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 300,
-              color: "#555555",
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 400,
+              fontStyle: "italic",
+              color: "#3D3D3D",
             }}
           >
             A glimpse into the world we're creating — sun-drenched, intimate,
@@ -138,13 +149,13 @@ export function Gallery() {
 
           {/* Swipe hint */}
           <p
-            className="mt-1 text-[10px] uppercase tracking-[0.3em]"
+            className="mt-1 text-xs uppercase tracking-[0.45em]"
             style={{
               fontFamily: "'Cinzel', serif",
-              color: "#AAAAAA",
+              color: "#7A0016",
             }}
           >
-            Swipe to explore
+            Swipe to Explore
           </p>
         </motion.div>
       </div>
