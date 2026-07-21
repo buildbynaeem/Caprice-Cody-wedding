@@ -4,6 +4,7 @@ import { CountdownTimer } from "@/components/wedding/CountdownTimer";
 import { Details } from "@/components/wedding/Details";
 import { Gallery } from "@/components/wedding/Gallery";
 import { Rsvp } from "@/components/wedding/Rsvp";
+import { SaveTheDate } from "@/components/wedding/SaveTheDate";
 import { Footer } from "@/components/wedding/Footer";
 import { AudioPlayer } from "@/components/wedding/AudioPlayer";
 
@@ -17,6 +18,7 @@ function Home() {
       <Hero />
       <CountdownTimer />
       <Details />
+      <SaveTheDate />
       <Gallery />
       <Rsvp />
       <Footer />
