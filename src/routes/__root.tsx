@@ -89,23 +89,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Caprice & Cody" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://caprice-and-cody.com" },
+      { property: "og:url", content: "https://caprice-cody-wedding.vercel.app" },
       { property: "og:title", content: "Caprice & Cody | You're Invited 🥀" },
       {
         property: "og:description",
         content:
           "Join us in celebrating the wedding of Caprice Monique and Cody McLeod. Click to view the details and RSVP.",
       },
-      { property: "og:image", content: "https://caprice-and-cody.com/envelope-poster.webp" },
+      { property: "og:image", content: "https://caprice-cody-wedding.vercel.app/preview.webp" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "twitter:url", content: "https://caprice-and-cody.com" },
+      { property: "twitter:url", content: "https://caprice-cody-wedding.vercel.app" },
       { property: "twitter:title", content: "Caprice & Cody | You're Invited 🥀" },
       {
         property: "twitter:description",
         content:
           "Join us in celebrating the wedding of Caprice Monique and Cody McLeod on February 29, 2028.",
       },
-      { property: "twitter:image", content: "https://caprice-and-cody.com/envelope-poster.webp" },
+      { property: "twitter:image", content: "https://caprice-cody-wedding.vercel.app/preview.webp" },
     ],
     links: [
       {
